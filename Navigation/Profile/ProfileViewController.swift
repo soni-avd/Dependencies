@@ -8,7 +8,7 @@
 
 import UIKit
 import StorageService
-//import SnapKit
+import SnapKit
 import iOSIntPackage
 
 class ProfileViewController: UIViewController {
@@ -63,23 +63,23 @@ class ProfileViewController: UIViewController {
         hv.profileImage.addGestureRecognizer(tapGesture)
         hv.profileImage.translatesAutoresizingMaskIntoConstraints = true
 
-//        profileTableView.snp.makeConstraints { make in
-//            make.top.equalTo(view)
-//            make.bottom.equalTo(view)
-//            make.trailing.equalTo(view)
-//            make.leading.equalTo(view)
-//        }
-//        transparentView.snp.makeConstraints { make in
-//            make.bottom.equalTo(profileTableView)
-//            make.top.equalTo(profileTableView)
-//            make.trailing.equalTo(profileTableView)
-//            make.leading.equalTo(profileTableView)
-//        }
-//        buttonX.snp.makeConstraints { make in
-//            make.top.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
-//            make.trailing.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
-//            make.width.height.equalTo(15)
-//}
+        profileTableView.snp.makeConstraints { make in
+            make.top.equalTo(view)
+            make.bottom.equalTo(view)
+            make.trailing.equalTo(view)
+            make.leading.equalTo(view)
+        }
+        transparentView.snp.makeConstraints { make in
+            make.bottom.equalTo(profileTableView)
+            make.top.equalTo(profileTableView)
+            make.trailing.equalTo(profileTableView)
+            make.leading.equalTo(profileTableView)
+        }
+        buttonX.snp.makeConstraints { make in
+            make.top.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
+            make.trailing.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
+            make.width.height.equalTo(15)
+}
         hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 35, width: 120, height: 120)
     }
     @objc func closeAnimation() {
