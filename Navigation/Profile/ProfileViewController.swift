@@ -56,12 +56,12 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileTableView)
         view.addSubview(transparentView)
         view.addSubview(buttonX)
-        view.addSubview(hv)
-        view.addSubview(hv.profileImage)
+//        view.addSubview(hv)
+//        view.addSubview(hv.profileImage)
         navigationController?.isNavigationBarHidden = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         hv.profileImage.addGestureRecognizer(tapGesture)
-        hv.profileImage.translatesAutoresizingMaskIntoConstraints = true
+//        hv.profileImage.translatesAutoresizingMaskIntoConstraints = true
 
         profileTableView.snp.makeConstraints { make in
             make.top.equalTo(view)
@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
             make.width.height.equalTo(15)
 }
-        hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 35, width: 120, height: 120)
+//        hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 35, width: 120, height: 120)
     }
     @objc func closeAnimation() {
         print(#function)
@@ -94,6 +94,12 @@ class ProfileViewController: UIViewController {
                 self.transparentView.alpha = 0
                 self.hv.profileImage.layer.cornerRadius = 60
                 self.hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 30, width: 120, height: 120)
+//                self.hv.profileImage.snp.removeConstraints()
+//                self.hv.profileImage.snp.updateConstraints { make in
+//                    make.top.leading.equalTo(self.hv).inset(16)
+//                    make.height.width.equalTo(120)
+//                }
+                
             }
         }, completion: { finished in
             print(finished)
@@ -106,14 +112,19 @@ class ProfileViewController: UIViewController {
         if currentAnimation > 7 {
             currentAnimation = 0
         }
-        
         UIView.animateKeyframes(withDuration: 0.8, delay: 0, options: .calculationModeLinear, animations: {
             switch self.currentAnimation {
             
             case 1: UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5 / 0.8) {
                 self.transparentView.backgroundColor = .white
                 self.transparentView.alpha = 0.5
-                self.hv.profileImage.frame = .init(origin: .init(
+//                self.hv.profileImage.snp.removeConstraints()
+//                self.hv.profileImage.snp.updateConstraints { make in
+//                    make.trailing.leading.equalTo(self.view)
+//                    make.top.equalTo(self.view).inset(220)
+//                    make.height.equalTo(self.view).inset(220)
+//                }
+                                self.hv.profileImage.frame = .init(origin: .init(
                                                     x: self.view.bounds.minX,
                                                     y: self.view.bounds.midY - self.hv.profileImage.bounds.height),
                                                    size: .init(width: self.view.bounds.width,
@@ -180,4 +191,3 @@ extension ProfileViewController: UITableViewDataSource {
         return 2
     }
 }
-
