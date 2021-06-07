@@ -48,21 +48,44 @@ class ProfileViewController: UIViewController {
         x.alpha = 0
         return x
     }()
+    var avatarFullScreen: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "major.jpg")
+        image.layer.cornerRadius = 60
+        image.layer.borderColor = UIColor.white.cgColor
+        image.layer.borderWidth = 3
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.isUserInteractionEnabled = true
+        image.alpha = 0
+        return image
+    }()
     var currentAnimation = 0
+//    var userSerVice: UserService
+//    var userName: String
+//    
+//    init(userService: UserService, userName: String) {
+//        self.userSerVice = userService
+//        self.userName = userName
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
         view.addSubview(profileTableView)
         view.addSubview(transparentView)
         view.addSubview(buttonX)
-//        view.addSubview(hv)
-//        view.addSubview(hv.profileImage)
         navigationController?.isNavigationBarHidden = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        hv.profileImage.addGestureRecognizer(tapGesture)
-//        hv.profileImage.translatesAutoresizingMaskIntoConstraints = true
+        
+        avatarFullScreen.frame = .init(x: view.safeAreaInsets.top + 16, y: view.safeAreaInsets.right + 30, width: 120, height: 120)
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+        hv.addGestureRecognizer(tapGesture)
+        
         profileTableView.snp.makeConstraints { make in
             make.top.equalTo(view)
             make.bottom.equalTo(view)
@@ -80,7 +103,6 @@ class ProfileViewController: UIViewController {
             make.trailing.equalTo(transparentView.safeAreaLayoutGuide).inset(15)
             make.width.height.equalTo(15)
 }
-//        hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 35, width: 120, height: 120)
     }
     @objc func closeAnimation() {
         print(#function)
@@ -92,14 +114,9 @@ class ProfileViewController: UIViewController {
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5 / 0.8) {
                 //                self.hv.profileImage.transform = .identity
                 self.transparentView.alpha = 0
-                self.hv.profileImage.layer.cornerRadius = 60
-                self.hv.profileImage.frame = .init(x: self.hv.safeAreaInsets.top + 16, y: self.hv.safeAreaInsets.right + 30, width: 120, height: 120)
-//                self.hv.profileImage.snp.removeConstraints()
-//                self.hv.profileImage.snp.updateConstraints { make in
-//                    make.top.leading.equalTo(self.hv).inset(16)
-//                    make.height.width.equalTo(120)
-//                }
-                
+                self.avatarFullScreen.layer.cornerRadius = 60
+                self.avatarFullScreen.frame = .init(x: self.view.safeAreaInsets.top + 16, y: self.view.safeAreaInsets.right + 30, width: 120, height: 120)
+                self.avatarFullScreen.alpha = 0
             }
         }, completion: { finished in
             print(finished)
@@ -113,24 +130,19 @@ class ProfileViewController: UIViewController {
             currentAnimation = 0
         }
         UIView.animateKeyframes(withDuration: 0.8, delay: 0, options: .calculationModeLinear, animations: {
+            self.view.addSubview(self.avatarFullScreen)
             switch self.currentAnimation {
-            
             case 1: UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5 / 0.8) {
                 self.transparentView.backgroundColor = .white
                 self.transparentView.alpha = 0.5
-//                self.hv.profileImage.snp.removeConstraints()
-//                self.hv.profileImage.snp.updateConstraints { make in
-//                    make.trailing.leading.equalTo(self.view)
-//                    make.top.equalTo(self.view).inset(220)
-//                    make.height.equalTo(self.view).inset(220)
-//                }
-                                self.hv.profileImage.frame = .init(origin: .init(
+                self.avatarFullScreen.alpha = 1
+                                self.avatarFullScreen.frame = .init(origin: .init(
                                                     x: self.view.bounds.minX,
-                                                    y: self.view.bounds.midY - self.hv.profileImage.bounds.height),
+                                                    y: self.view.bounds.midY - self.avatarFullScreen.bounds.height),
                                                    size: .init(width: self.view.bounds.width,
                                                                height: self.view.bounds.height / 2))
                 
-                self.hv.profileImage.layer.cornerRadius = 0
+                self.avatarFullScreen.layer.cornerRadius = 0
             }
             UIView.addKeyframe(withRelativeStartTime: 0.5 / 0.8, relativeDuration: 0.3 / 0.8) {
                 self.buttonX.alpha = 1

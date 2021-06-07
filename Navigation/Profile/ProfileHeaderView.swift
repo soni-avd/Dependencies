@@ -27,11 +27,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         image.isUserInteractionEnabled = true
-        //        image.translatesAutoresizingMaskIntoConstraints = false
+        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    var profileTitle: UILabel = {
+    lazy var profileTitle: UILabel = {
         let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         title.textColor = .black
@@ -40,7 +40,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return title
         
     }()
-    var profileInfo: UILabel = {
+    lazy var profileInfo: UILabel = {
         let info = UILabel()
         info.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         info.textColor = .gray
@@ -48,7 +48,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         info.text = "Ground Control to Major Tom"
         return info
     }()
-    var textField: UITextField = {
+    lazy var textField: UITextField = {
         let text = UITextField()
         text.layer.cornerRadius = 12
         text.layer.borderColor = UIColor.black.cgColor
@@ -60,7 +60,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         text.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return text
     }()
-    var statusButton: UIButton = {
+    lazy var statusButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -74,7 +74,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
-    private var statusText: String?
+    var statusText: String?
     
     @objc func buttonPressed() {
         print("\(profileInfo.text!)")
@@ -104,26 +104,25 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         profileHeaderView.addSubview(textField)
         profileHeaderView.addSubview(statusButton)
         
-        profileImage.frame = .init(x: self.profileHeaderView.safeAreaInsets.top + 16, y: self.profileHeaderView.safeAreaInsets.right + 35, width: 120, height: 120)
-        
         profileHeaderView.snp.makeConstraints{ make in
             make.top.trailing.leading.equalTo(contentView)
             make.height.equalTo(220)
         }
         profileTitle.snp.makeConstraints { make in
-            make.top.equalTo(profileHeaderView).inset(27)
-            make.leading.equalTo(profileHeaderView).inset(152)
+            make.top.equalTo(contentView).inset(27)
+            make.leading.equalTo(contentView).inset(152)
             make.height.equalTo(30)
             make.width.equalTo(180)
         }
-        //        profileImage.snp.makeConstraints { make in
-        //            make.top.leading.equalTo(profileHeaderView).inset(16)
-        //            make.height.width.equalTo(120)
-        //        }
+        profileImage.snp.makeConstraints { make in
+            make.top.leading.equalTo(contentView).inset(16)
+            make.height.width.equalTo(120)
+        }
         statusButton.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(profileHeaderView).inset(16)
+            make.leading.equalTo(contentView).inset(16)
+            make.trailing.equalTo(contentView).offset(-16)
             make.height.equalTo(50)
-            make.bottom.equalTo(profileHeaderView).inset(16)
+            make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(16)
         }
         profileInfo.snp.makeConstraints { make in
             make.leading.equalTo(profileTitle)
@@ -137,38 +136,38 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             make.height.equalTo(40)
             make.width.equalTo(statusButton).dividedBy(2)
         }
-//        NSLayoutConstraint.activate([
-            
-            //            profileHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            //            profileHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            //            profileHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            //            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            //
-            //            profileImage.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 16),
-            //            profileImage.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 16),
-            //            profileImage.heightAnchor.constraint(equalToConstant: 120),
-            //            profileImage.widthAnchor.constraint(equalToConstant: 120),
-            
-            //            profileTitle.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 27),
-            //            profileTitle.heightAnchor.constraint(equalToConstant: 30),
-            //            profileTitle.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 152),
-            //            profileTitle.widthAnchor.constraint(equalToConstant: 180),
-            
-//            statusButton.widthAnchor.constraint(equalTo: profileHeaderView.widthAnchor, multiplier: 0.9),
-//            statusButton.centerXAnchor.constraint(equalTo: profileHeaderView.centerXAnchor),
-//            statusButton.heightAnchor.constraint(equalToConstant: 50),
-//            statusButton.bottomAnchor.constraint(equalTo: profileHeaderView.bottomAnchor, constant: -16),
-//
-//            profileInfo.leadingAnchor.constraint(equalTo: profileTitle.leadingAnchor),
-//            profileInfo.topAnchor.constraint(equalTo: profileTitle.bottomAnchor, constant: 16),
-//            profileInfo.heightAnchor.constraint(equalToConstant: 20),
-//            profileInfo.widthAnchor.constraint(equalTo:statusButton.widthAnchor, multiplier: 0.5),
-//
-//            textField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -15),
-//            textField.leadingAnchor.constraint(equalTo: profileTitle.leadingAnchor),
-//            textField.heightAnchor.constraint(equalToConstant: 40),
-//            textField.widthAnchor.constraint(equalTo: statusButton.widthAnchor, multiplier: 0.5)
-//        ])
+        //        NSLayoutConstraint.activate([
+        
+        //            profileHeaderView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+        //            profileHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+        //            profileHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+        //            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+        //
+        //            profileImage.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 16),
+        //            profileImage.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 16),
+        //            profileImage.heightAnchor.constraint(equalToConstant: 120),
+        //            profileImage.widthAnchor.constraint(equalToConstant: 120),
+        
+        //            profileTitle.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 27),
+        //            profileTitle.heightAnchor.constraint(equalToConstant: 30),
+        //            profileTitle.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 152),
+        //            profileTitle.widthAnchor.constraint(equalToConstant: 180),
+        
+        //            statusButton.widthAnchor.constraint(equalTo: profileHeaderView.widthAnchor, multiplier: 0.9),
+        //            statusButton.centerXAnchor.constraint(equalTo: profileHeaderView.centerXAnchor),
+        //            statusButton.heightAnchor.constraint(equalToConstant: 50),
+        //            statusButton.bottomAnchor.constraint(equalTo: profileHeaderView.bottomAnchor, constant: -16),
+        //
+        //            profileInfo.leadingAnchor.constraint(equalTo: profileTitle.leadingAnchor),
+        //            profileInfo.topAnchor.constraint(equalTo: profileTitle.bottomAnchor, constant: 16),
+        //            profileInfo.heightAnchor.constraint(equalToConstant: 20),
+        //            profileInfo.widthAnchor.constraint(equalTo:statusButton.widthAnchor, multiplier: 0.5),
+        //
+        //            textField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -15),
+        //            textField.leadingAnchor.constraint(equalTo: profileTitle.leadingAnchor),
+        //            textField.heightAnchor.constraint(equalToConstant: 40),
+        //            textField.widthAnchor.constraint(equalTo: statusButton.widthAnchor, multiplier: 0.5)
+        //        ])
     }
 }
 

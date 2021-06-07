@@ -58,3 +58,4 @@ public struct StoragePhotoProfile {
     public static let tableModel = PhotoProfile(label: "Photos", photo1: #imageLiteral(resourceName: "1.jpg"), photo2: #imageLiteral(resourceName: "2.jpg"), photo3: #imageLiteral(resourceName: "3.jpg"), photo4: #imageLiteral(resourceName: "4.jpg"))
     
 }
+
