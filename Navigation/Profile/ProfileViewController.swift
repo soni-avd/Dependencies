@@ -77,6 +77,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        userSerVice = CurrentService()
         view.addSubview(profileTableView)
         view.addSubview(transparentView)
         view.addSubview(buttonX)
@@ -161,6 +162,7 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return hv
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:

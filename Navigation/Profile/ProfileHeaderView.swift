@@ -11,6 +11,7 @@ import StorageService
 import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
+
     var profileHeaderView: UIView! = {
         let hv = UIView()
         hv.backgroundColor = .lightGray
@@ -76,6 +77,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     var statusText: String?
     
+    var user: User?
+    
     @objc func buttonPressed() {
         print("\(profileInfo.text!)")
         if let statusText = statusText {
@@ -89,6 +92,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        profileImage.image = user?.avatar.image
+        profileTitle.text = user?.fullName.text
+        profileInfo.text = user?.status.text
         setupViews()
     }
     

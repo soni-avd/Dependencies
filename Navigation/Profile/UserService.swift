@@ -25,13 +25,10 @@ protocol UserService {
 class CurrentService: UserService {
     var userInfo: User?
     func userInformation(_ user: UILabel) -> User {
-        guard let userInfo = userInfo else {
-        userInfo?.fullName = user
-        return userInfo!}
+        guard let userInfo = userInfo,
+        userInfo.fullName == user else {
+            return userInfo!}
         return userInfo
-    }
-    init(userInfo: User) {
-        self.userInfo = userInfo
     }
 
 }
