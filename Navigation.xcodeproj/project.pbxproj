@@ -22,6 +22,7 @@
 		E328E94225C1A49A005BDBEB /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328E94125C1A49A005BDBEB /* ProfileTableViewCell.swift */; };
 		E3AA38B425C41BD3003E4FA2 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA38B325C41BD3003E4FA2 /* PhotosCollectionViewCell.swift */; };
 		E3AA38B725C41BE4003E4FA2 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA38B625C41BE4003E4FA2 /* PhotosViewController.swift */; };
+		E3B613E0266E357600E7CA5B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B613DF266E357600E7CA5B /* UserService.swift */; };
 		E3BEA40525B84A8A003F6D32 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BEA40425B84A8A003F6D32 /* LogInViewController.swift */; };
 		E3D1E5B1265BFA3900F6507F /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = E3D1E5AF265BFA3900F6507F /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3D1E5B4265BFA3900F6507F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D1E5AD265BFA3900F6507F /* StorageService.framework */; };
@@ -80,6 +81,7 @@
 		E3A0ED6A25C86D0D001AF615 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		E3AA38B325C41BD3003E4FA2 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3AA38B625C41BE4003E4FA2 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		E3B613DF266E357600E7CA5B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E3BEA40425B84A8A003F6D32 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E3D1E5AD265BFA3900F6507F /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D1E5AF265BFA3900F6507F /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				E3184A9325A886BF00FF86E9 /* ProfileViewController.swift */,
 				E3BEA40425B84A8A003F6D32 /* LogInViewController.swift */,
 				E328E94125C1A49A005BDBEB /* ProfileTableViewCell.swift */,
+				E3B613DF266E357600E7CA5B /* UserService.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				E3BEA40525B84A8A003F6D32 /* LogInViewController.swift in Sources */,
 				E3DA15AB25C3487A003D78ED /* PhotosTableViewCell.swift in Sources */,
 				E328E94225C1A49A005BDBEB /* ProfileTableViewCell.swift in Sources */,
+				E3B613E0266E357600E7CA5B /* UserService.swift in Sources */,
 				E3AA38B425C41BD3003E4FA2 /* PhotosCollectionViewCell.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				E3184A9125A8869E00FF86E9 /* ProfileHeaderView.swift in Sources */,

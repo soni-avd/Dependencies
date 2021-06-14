@@ -23,20 +23,20 @@ class ProfileTableViewCell: UITableViewCell {
             if let views = post?.views {
                 postViews.text = "Views: " + String(views)
             }
-//            guard let source = postImage.image else { return }
-//            if postImage.image == UIImage(named: "john") {
-//                ImageProcessor().processImage(sourceImage: source, filter: .noir) { [weak self] image in
-//                self?.postImage.image = image
-//            }
-//            } else if postImage.image == UIImage(named: "freddie") {
-//                ImageProcessor().processImage(sourceImage: source, filter: .monochrome(color: .blue, intensity: 0.5)) { [weak self] image in
-//                    self?.postImage.image = image
-//                }
-//            } else {
-//                ImageProcessor().processImage(sourceImage: source, filter: .sepia(intensity: 1)) { [weak self] image in
-//                    self?.postImage.image = image
-//                }
-//            }
+            guard let source = postImage.image else { return }
+            if postImage.image == UIImage(named: "john") {
+                ImageProcessor().processImage(sourceImage: source, filter: .noir) { [weak self] image in
+                self?.postImage.image = image
+            }
+            } else if postImage.image == UIImage(named: "freddie") {
+                ImageProcessor().processImage(sourceImage: source, filter: .monochrome(color: .blue, intensity: 0.5)) { [weak self] image in
+                    self?.postImage.image = image
+                }
+            } else {
+                ImageProcessor().processImage(sourceImage: source, filter: .sepia(intensity: 1)) { [weak self] image in
+                    self?.postImage.image = image
+                }
+            }
         }
     }    
     private let authorLabel: UILabel = {
