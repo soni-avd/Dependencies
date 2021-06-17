@@ -62,22 +62,29 @@ class ProfileViewController: UIViewController {
     }()
     var currentAnimation = 0
     
-    var userSerVice: UserService
+    var userService: UserService
     var userName: String
+    var user: User?
     
     init(userService: UserService, userName: String) {
-        self.userSerVice = userService
+        #if DEBUG
+        self.userService = TestUserService()
+        #else
+        self.userService = CurrentService()
+        #endif
         self.userName = userName
+        hv.profileImage.image = userService.avatar
+        hv.profileTitle.text = userService.fullName
+        hv.profileInfo.text = userService.status
         super.init(nibName: nil, bundle: nil)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        userSerVice = CurrentService()
+            super.viewDidLoad()
         view.addSubview(profileTableView)
         view.addSubview(transparentView)
         view.addSubview(buttonX)

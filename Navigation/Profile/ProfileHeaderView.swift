@@ -11,7 +11,9 @@ import StorageService
 import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
-
+    
+    var user: User?
+    var userService: UserService?
     var profileHeaderView: UIView! = {
         let hv = UIView()
         hv.backgroundColor = .lightGray
@@ -21,7 +23,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "major.jpg")
         image.layer.cornerRadius = 60
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.borderWidth = 3
@@ -36,7 +37,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         title.textColor = .black
-        title.text = "Major Tom"
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
         
@@ -46,7 +46,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         info.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         info.textColor = .gray
         info.translatesAutoresizingMaskIntoConstraints = false
-        info.text = "Ground Control to Major Tom"
         return info
     }()
     lazy var textField: UITextField = {
@@ -76,9 +75,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     var statusText: String?
-    
-    var user: User?
-    
+        
     @objc func buttonPressed() {
         print("\(profileInfo.text!)")
         if let statusText = statusText {
@@ -92,9 +89,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        profileImage.image = user?.avatar.image
-        profileTitle.text = user?.fullName.text
-        profileInfo.text = user?.status.text
         setupViews()
     }
     
