@@ -87,8 +87,17 @@ class LogInViewController: UIViewController {
     
     @objc func buttonTapped() {
         print("button tapped")
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        #if DEBUG
+        let userService = TestUserService()
+        let userName = userService.fullName
+        let profileVC = ProfileViewController(userService: userService, userName: userName)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        #else
+        let userService = CurrentService()
+        let userName = userService.fullName
+        let profileVC = ProfileViewController(userService: userService, userName: userName)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        #endif
     }
     
     //    MARK: viewDidLoad
