@@ -64,7 +64,6 @@ class ProfileViewController: UIViewController {
     
     var userService: UserService
     var userName: String
-    var user: User?
     
     init(userService: UserService, userName: String) {
         #if DEBUG
@@ -121,7 +120,6 @@ class ProfileViewController: UIViewController {
                 
             }
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5 / 0.8) {
-                //                self.hv.profileImage.transform = .identity
                 self.transparentView.alpha = 0
                 self.avatarFullScreen.layer.cornerRadius = 60
                 self.avatarFullScreen.frame = .init(x: self.view.safeAreaInsets.top + 16, y: self.view.safeAreaInsets.right + 30, width: 120, height: 120)

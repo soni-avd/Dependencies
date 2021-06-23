@@ -89,15 +89,16 @@ class LogInViewController: UIViewController {
         print("button tapped")
         #if DEBUG
         let userService = TestUserService()
-        let userName = userService.fullName
-        let profileVC = ProfileViewController(userService: userService, userName: userName)
-        self.navigationController?.pushViewController(profileVC, animated: true)
         #else
         let userService = CurrentService()
-        let userName = userService.fullName
+        #endif
+        let userName: String = ""
+        if userName != userService.fullName {
+            ProfileHeaderView().profileTitle.text = "undefined user"
+        }
+
         let profileVC = ProfileViewController(userService: userService, userName: userName)
         self.navigationController?.pushViewController(profileVC, animated: true)
-        #endif
     }
     
     //    MARK: viewDidLoad

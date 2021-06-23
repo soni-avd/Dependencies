@@ -23,7 +23,7 @@ protocol UserService {
     var fullName: String { get }
     var avatar: UIImage { get }
     var status: String { get }
-    func userInformation(_ user: String) -> User
+    func getUser(_ user: String) -> User
 }
 class CurrentService: UserService {
     var userInfo: User?
@@ -31,7 +31,7 @@ class CurrentService: UserService {
     var avatar: UIImage = #imageLiteral(resourceName: "logo")
     var status: String = ""
 
-    func userInformation(_ user: String) -> User {
+    func getUser(_ user: String) -> User {
         guard let userInfo = userInfo,
         userInfo.fullName == user else {
             return userInfo!}
@@ -47,7 +47,7 @@ class TestUserService: UserService {
     let avatar: UIImage = #imageLiteral(resourceName: "major")
     let status: String = "Ground Control to Major Tom"
     
-    func userInformation(_ user: String) -> User {
+    func getUser(_ user: String) -> User {
         
         userInfo = .init(fullName: fullName,
               avatar: avatar,
